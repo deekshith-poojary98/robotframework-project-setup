@@ -11,12 +11,10 @@ This repository provides a batch file for setting up a new Robot Framework proje
 ## Setup
 ### Clone the Repository
 Clone this repository to your local machine:
-    ```
-    git clone https://github.com/Deekshith-07/robotframework-project-setup.git
-    ```
-    ```
-    cd robotframework-project-setup
-    ```
+```
+git clone https://github.com/Deekshith-07/robotframework-project-setup.git
+cd robotframework-project-setup
+```
 
 ## Create a New Project
 - Open a command prompt.
