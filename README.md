@@ -68,17 +68,17 @@ The project is organized as follows:
 └── run_tests.py
 ```
 ## What the Batch File Does
-- Checks for Python Installation: Ensures Python is installed on your system.
-- Checks for Existing Project: If a project with the same name already exists, it will prompt you to confirm whether you want to overwrite it.
-- Creates Project Structure: Generates directories and sample files for a Robot Framework project.
-- Sets Up Virtual Environment: Installs the required libraries into a virtual environment.
-- Configures Project: Adds initial configuration, sample files, and required dependencies.
+- **Checks for Python Installation**: Ensures Python is installed on your system.
+- **Checks for Existing Project**: If a project with the same name already exists, it will ask you to delete the project manually or use different name.
+- **Creates Project Structure**: Generates directories and sample files for a Robot Framework project.
+- **Sets Up Virtual Environment**: Installs the required libraries into a virtual environment.
+- **Configures Project**: Adds initial configuration, sample files, and required dependencies.
 
 
 ## Troubleshooting
-- Error during project setup: Ensure you have Python installed and try running the batch file again.
-- Missing virtual environment: Check if the virtual environment was created and activated properly.
-- For further assistance, please refer to the Robot Framework documentation.
+- **Error during project setup**: Ensure you have Python installed and try running the batch file again.
+- **Missing virtual environment**: Check if the virtual environment was created and activated properly.
+- For further assistance, please refer to the [Robot Framework documentation](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html).
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
