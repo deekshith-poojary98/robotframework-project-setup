@@ -29,7 +29,7 @@ Replace <projectname> with your desired project name.
 ## Project Structure
 
 The project is organized as follows:
-
+```
 <projectname>/
 │
 ├── configs/
@@ -66,7 +66,7 @@ The project is organized as follows:
 ├── requirements.txt
 ├── README.md
 └── run_tests.py
-
+```
 ## What the Batch File Does
 - Checks for Python Installation: Ensures Python is installed on your system.
 - Checks for Existing Project: If a project with the same name already exists, it will prompt you to confirm whether you want to overwrite it.
