@@ -23,7 +23,7 @@ cd robotframework-project-setup
 ```
 create-robot.bat <projectname>
 ```
-Replace <projectname> with your desired project name.
+Replace ```<projectname>``` with your desired project name.
 
 
 ## Project Structure
