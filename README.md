@@ -32,6 +32,8 @@ The project is organized as follows:
 ```
 <projectname>/
 │
+├── allure-results/
+│
 ├── configs/
 │ └── config.yaml
 │
@@ -39,8 +41,7 @@ The project is organized as follows:
 │ └── test_data.csv
 │
 ├── keywords/
-│ ├── init.py
-│ └── web_keywords.py
+│ └── web_keywords.resource
 │
 ├── libraries/
 │ ├── init.py
