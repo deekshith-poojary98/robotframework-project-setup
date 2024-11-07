@@ -125,6 +125,7 @@ echo robotframework-requests >> "%PROJECT_NAME%\requirements.txt"
 echo robotframework-sshlibrary >> "%PROJECT_NAME%\requirements.txt"
 echo robotframework-databaselibrary >> "%PROJECT_NAME%\requirements.txt"
 echo robotframework-appiumlibrary >> "%PROJECT_NAME%\requirements.txt"
+echo robotframework-excelsage >> "%PROJECT_NAME%\requirements.txt"
 if %ERRORLEVEL% NEQ 0 (
     echo Failed to write requirements to requirements.txt.
     set "FLAG_SUCCESS=0"
