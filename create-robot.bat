@@ -51,8 +51,8 @@ mkdir "%PROJECT_NAME%\resources\variables"
 mkdir "%PROJECT_NAME%\results"
 mkdir "%PROJECT_NAME%\testcases"
 mkdir "%PROJECT_NAME%\tools"
-if %ERRORLEVEL% NEQ 0 (
-    echo Failed to create subdirectories.
+mkdir "%PROJECT_NAME%\allure-results"
+if %ERRORLEVEL% NEQ 0 (    echo Failed to create subdirectories.
     set "FLAG_SUCCESS=0"
     exit /b 1
 )
@@ -60,8 +60,7 @@ if %ERRORLEVEL% NEQ 0 (
 :: Create sample files with initial content
 echo # Configuration files > "%PROJECT_NAME%\configs\config.yaml"
 echo # Test data files > "%PROJECT_NAME%\data\test_data.csv"
-echo # Initialize the keywords module > "%PROJECT_NAME%\keywords\__init__.py"
-echo # Web-specific keywords. Can use .robot or .resource files as well. > "%PROJECT_NAME%\keywords\web_keywords.py"
+echo # Web-specific keywords. Write your keywords here. > "%PROJECT_NAME%\keywords\web_keywords.resource"
 echo # Initialize the libraries module > "%PROJECT_NAME%\libraries\__init__.py"
 echo # Common utility functions > "%PROJECT_NAME%\libraries\common.py"
 echo # Web element locators > "%PROJECT_NAME%\resources\locators\web_locators.py"
@@ -71,11 +70,15 @@ echo # Project documentation > "%PROJECT_NAME%\README.md"
 
 echo from datetime import datetime > "%PROJECT_NAME%\run_tests.py"
 echo import robot >> "%PROJECT_NAME%\run_tests.py"
+echo import os >> "%PROJECT_NAME%\run_tests.py"
 echo. >> "%PROJECT_NAME%\run_tests.py"
 echo curr_time = datetime.now().strftime('%%Y%%m%%d%%I%%M%%S') >> "%PROJECT_NAME%\run_tests.py"
 echo. >> "%PROJECT_NAME%\run_tests.py"
 echo def run_robot_tests(): >> "%PROJECT_NAME%\run_tests.py"
-echo     robot.run("./testcases", report=f"./reports/{curr_time}_report.html", output=f"./results/{curr_time}_result.xml", log=f"./logs/{curr_time}_log.html") >> "%PROJECT_NAME%\run_tests.py"
+echo     allure_results_dir = f"./allure-results/{curr_time}" >> "%PROJECT_NAME%\run_tests.py"
+echo     os.makedirs(allure_results_dir, exist_ok=True) >> "%PROJECT_NAME%\run_tests.py"
+echo. >> "%PROJECT_NAME%\run_tests.py"
+echo     robot.run("./testcases", report=f"./reports/{curr_time}_report.html", output=f"./results/{curr_time}_result.xml", log=f"./logs/{curr_time}_log.html", listener=f"allure_robotframework:{allure_results_dir}") >> "%PROJECT_NAME%\run_tests.py"
 echo. >> "%PROJECT_NAME%\run_tests.py"
 echo def main(): >> "%PROJECT_NAME%\run_tests.py"
 echo     run_robot_tests() >> "%PROJECT_NAME%\run_tests.py"
@@ -92,8 +95,9 @@ if %ERRORLEVEL% NEQ 0 (
 echo *** Settings *** > "%PROJECT_NAME%\testcases\web_tests.robot"
 echo Documentation           This is a sample test file >> "%PROJECT_NAME%\testcases\web_tests.robot"
 echo Library           SeleniumLibrary >> "%PROJECT_NAME%\testcases\web_tests.robot"
-echo Library           ../keywords/web_keywords.py >> "%PROJECT_NAME%\testcases\web_tests.robot"
+echo Resource           ../keywords/web_keywords.resource >> "%PROJECT_NAME%\testcases\web_tests.robot"
 echo Variables         ../resources/variables/common_vars.py >> "%PROJECT_NAME%\testcases\web_tests.robot"
+echo Variables         ../resources/locators/web_locators.py >> "%PROJECT_NAME%\testcases\web_tests.robot"
 echo. >> "%PROJECT_NAME%\testcases\web_tests.robot"
 echo. >> "%PROJECT_NAME%\testcases\web_tests.robot"
 echo *** Test Cases *** >> "%PROJECT_NAME%\testcases\web_tests.robot"
@@ -126,6 +130,7 @@ echo robotframework-sshlibrary >> "%PROJECT_NAME%\requirements.txt"
 echo robotframework-databaselibrary >> "%PROJECT_NAME%\requirements.txt"
 echo robotframework-appiumlibrary >> "%PROJECT_NAME%\requirements.txt"
 echo robotframework-excelsage >> "%PROJECT_NAME%\requirements.txt"
+echo allure-robotframework >> "%PROJECT_NAME%\requirements.txt"
 if %ERRORLEVEL% NEQ 0 (
     echo Failed to write requirements to requirements.txt.
     set "FLAG_SUCCESS=0"
